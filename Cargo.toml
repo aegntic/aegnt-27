@@ -1,3 +1,5 @@
+[workspace]
+
 [package]
 name = "aegnt-27"
 version = "2.7.0"
@@ -42,7 +44,7 @@ rubato = "0.14"
 rustfft = "6.1"
 
 # Mathematical utilities
-num-cpus = "1.0"
+num_cpus = "1.0"
 rand_distr = "0.4"
 
 # HMAC and cryptography
@@ -103,9 +105,6 @@ visual-humanization = []
 ai-detection = []
 pattern-analysis = []
 
-[[bench]]
-name = "humanization_benchmarks"
-harness = false
 
 [[example]]
 name = "basic_integration"
@@ -115,9 +114,6 @@ required-features = ["basic-humanization"]
 name = "advanced_customization"
 required-features = ["all-humanization"]
 
-[[example]]
-name = "detection_validation"
-required-features = ["detection-validation"]
 
 [lib]
 name = "aegnt_27"
