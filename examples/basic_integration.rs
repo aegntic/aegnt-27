@@ -201,9 +201,9 @@ mod tests {
     #[tokio::test]
     async fn test_basic_integration() {
         let aegnt = Aegnt27Engine::builder()
-            .enable_mouse_humanization()
-            .enable_typing_humanization()
-            .enable_ai_detection_resistance()
+            .enable_mouse_authenticity()
+            .enable_typing_authenticity()
+            .enable_authenticity_validation()
             .build()
             .await
             .expect("Failed to create engine");
@@ -225,7 +225,7 @@ mod tests {
     #[tokio::test]
     async fn test_error_handling() {
         let aegnt = Aegnt27Engine::builder()
-            .enable_ai_detection_resistance()
+            .enable_authenticity_validation()
             .build()
             .await
             .expect("Failed to create engine");

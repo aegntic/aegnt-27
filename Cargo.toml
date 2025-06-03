@@ -37,11 +37,11 @@ sha2 = "0.10"
 aes-gcm = "0.10"
 ed25519-dalek = "2.0"
 
-# Audio processing
-cpal = "0.15"
-hound = "3.5"
-rubato = "0.14"
-rustfft = "6.1"
+# Audio processing (optional)
+cpal = { version = "0.15", optional = true }
+hound = { version = "3.5", optional = true }
+rubato = { version = "0.14", optional = true }
+rustfft = { version = "6.1", optional = true }
 
 # Mathematical utilities
 num_cpus = "1.0"
@@ -62,14 +62,11 @@ candle-nn = { version = "0.3", optional = true }
 tch = { version = "0.14", optional = true }
 
 # System integration
-winapi = { version = "0.3", features = ["winuser", "wingdi"], target_os = "windows" }
-x11 = { version = "2.21", target_os = "linux" }
-cocoa = { version = "0.24", target_os = "macos" }
-core-graphics = { version = "0.22", target_os = "macos" }
+# Conditional dependencies moved to target sections below
 
-# Input simulation
-enigo = "0.1"
-inputbot = "0.5"
+# Input simulation (optional)
+enigo = { version = "0.1", optional = true }
+inputbot = { version = "0.5", optional = true }
 
 # Network and HTTP
 reqwest = { version = "0.11", features = ["json"], optional = true }
@@ -91,19 +88,20 @@ full = ["all-humanization", "ml-models", "video-processing", "network-features"]
 
 # Core feature sets
 basic-humanization = []
-all-humanization = ["mouse-humanization", "typing-humanization", "audio-humanization", "visual-humanization"]
-detection-validation = ["ai-detection", "pattern-analysis"]
+all-humanization = ["mouse", "typing", "audio", "visual"]
+detection-validation = ["detection", "authenticity"]
 ml-models = ["candle-core", "candle-nn", "tch"]
 video-processing = ["opencv", "ffmpeg-next"]
 network-features = ["reqwest", "hyper"]
 
 # Individual modules
-mouse-humanization = []
-typing-humanization = []
-audio-humanization = []
-visual-humanization = []
-ai-detection = []
-pattern-analysis = []
+mouse = ["enigo", "inputbot", "winapi", "x11", "cocoa", "core-graphics"]
+typing = ["enigo", "inputbot", "winapi", "x11", "cocoa", "core-graphics"]
+audio = ["cpal", "hound", "rubato", "rustfft"]
+visual = []
+detection = []
+authenticity = []
+persistence = []
 
 
 [[example]]
@@ -114,6 +112,16 @@ required-features = ["basic-humanization"]
 name = "advanced_customization"
 required-features = ["all-humanization"]
 
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "wingdi"], optional = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+x11 = { version = "2.21", features = ["xlib", "xtest"], optional = true }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+cocoa = { version = "0.24", optional = true }
+core-graphics = { version = "0.22", optional = true }
 
 [lib]
 name = "aegnt_27"
