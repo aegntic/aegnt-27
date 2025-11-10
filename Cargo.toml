@@ -126,3 +126,6 @@ core-graphics = { version = "0.22", optional = true }
 [lib]
 name = "aegnt_27"
 path = "src/lib.rs"
+[[bin]]
+name = "simple_perf_test"
+path = "simple_perf_test.rs"

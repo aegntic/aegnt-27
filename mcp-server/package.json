@@ -2,12 +2,12 @@
   "name": "@aegntic/aegnt27-mcp",
   "version": "2.7.1",
   "description": "MCP Server for aegnt-27: The Human Peak Protocol - AI Authenticity Achievement through 27 behavioral patterns",
-  "main": "dist/index.js",
+  "main": "dist/index-enhanced.js",
   "type": "module",
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node",
-    "dev": "bun --watch src/index.ts",
-    "start": "bun dist/index.js",
+    "build": "bun build src/index-enhanced.ts --outdir dist --target node",
+    "dev": "bun --watch src/index-enhanced.ts",
+    "start": "bun dist/index-enhanced.js",
     "test": "bun test",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts"
@@ -41,14 +41,16 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
     "@modelcontextprotocol/sdk": "^0.5.0",
-    "zod": "^3.23.8",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "electron": "^39.1.1",
+    "playwright-core": "^1.56.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
+    "@types/node": "^24.10.0",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.9.3"
   },
   "files": [
     "dist/**/*",
